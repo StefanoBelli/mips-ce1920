@@ -3,11 +3,16 @@ Repository containing MIPS assembly code for university course (uniroma2, CE)
 
  * [Calcolatori Elettronici AA 19/20](http://www.ce.uniroma2.it/courses/ce1920/)
  * [SPIM MIPS Simulator (sourceforge)](http://spimsimulator.sourceforge.net/)
- * [MIPS Instruction Set](https://stefanobelli.github.io/mips-isa-brief)
  
-# SPIM
+### SPIM
 SPIM is most likely available on distro's repositories, just look for it.
 
+ * Ubuntu: [spim](https://packages.ubuntu.com/search?keywords=spim) (APT)
+ * Debian: [spim](https://packages.debian.org/search?keywords=spim) (APT)
+ * Fedora: [spim](https://rpmfind.net/linux/rpm2html/search.php?query=spim) (RPM/?DNF?)
+ * Arch Linux: [qtspim](https://www.archlinux.org/packages/community/x86_64/qtspim/) (Pacman)
+ * ...
+ 
 ```
  :) ~> spim
 Loaded: /usr/share/spim/exceptions.s
@@ -45,3 +50,5 @@ e.g., ex(it), re(ad), l(oad), ru(n), s(tep), p(rint)
 (spim) run
 (spim) exit
 ```
+
+### Brief instruction set reference
