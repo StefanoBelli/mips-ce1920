@@ -73,11 +73,13 @@ e.g., ex(it), re(ad), l(oad), ru(n), s(tep), p(rint)
 
  ```beq REG, REG/IMM, *IMM``` (branch to *IMM if REG is equal to REG/IMM)
  
- ```addi REG, *REG, IMM``` (add integer *REG to IMM and store result to REG)
+ ```addi REG, *REG, IMM``` (add integer *REG to IMM and store result to REG, **NOTE**: there is no subi, IMM will be a negative)
  
  ```move REG, *REG``` (move from *REG to REG)
  
  ```syscall``` (request the operating system to execute a service)
+
+ ```add REG, *REG, #REG``` (add integer *REG to #REG and store result in REG, **NOTE**: there is not sub, #REG will be a negative)
 
 ### SPIM syscall table
 [here](http://students.cs.tamu.edu/tanzir/csce350/reference/syscalls.html)
