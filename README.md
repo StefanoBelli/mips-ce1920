@@ -54,16 +54,28 @@ e.g., ex(it), re(ad), l(oad), ru(n), s(tep), p(rint)
 ### Brief instruction set reference
 
  ```sw REG, REG/IMM``` (store word to addr in REG/IMM)
+ 
  ```lw REG, REG/IMM``` (load word from addr in REG/IMM)
+ 
  ```lb REG, REG/IMM``` (load byte from addr in REG/IMM)
+ 
  ```sb REG, REG/IMM``` (store byte to addr in REG/IMM)
+ 
  ```jr REG``` (jump to addr in REG)
+
  ```jal REG/IMM``` (jump to addr REG/IMM, **update** REG = ra)
+ 
  ```j IMM``` (jump to IMM)
+
  ```la REG, IMM``` (load IMM (address) in REG)
+
  ```li REG, IMM``` (load IMM (integer) in REG)
+
  ```beq REG, REG/IMM, *IMM``` (branch to *IMM if REG is equal to REG/IMM)
+ 
  ```addi REG, *REG, REG/IMM``` (add integer *REG to REG/IMM and store result to REG)
+ 
  ```move REG, *REG``` (move from *REG to REG)
+ 
  ```syscall``` (request the operating system to execute a service)
 
