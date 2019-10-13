@@ -73,7 +73,7 @@ e.g., ex(it), re(ad), l(oad), ru(n), s(tep), p(rint)
 
  ```beq REG, REG/IMM, *IMM``` (branch to *IMM if REG is equal to REG/IMM)
  
- ```addi REG, *REG, IMM``` (add integer *REG to REG/IMM and store result to REG)
+ ```addi REG, *REG, IMM``` (add integer *REG to IMM and store result to REG)
  
  ```move REG, *REG``` (move from *REG to REG)
  
