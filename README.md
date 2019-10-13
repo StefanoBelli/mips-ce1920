@@ -79,3 +79,5 @@ e.g., ex(it), re(ad), l(oad), ru(n), s(tep), p(rint)
  
  ```syscall``` (request the operating system to execute a service)
 
+### SPIM syscall table
+[here](http://students.cs.tamu.edu/tanzir/csce350/reference/syscalls.html)
