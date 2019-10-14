@@ -85,5 +85,10 @@ e.g., ex(it), re(ad), l(oad), ru(n), s(tep), p(rint)
 
  ```bne REG, REG/IMM, *IMM``` (branch to *IMM if REG is NOT equal to REG/IMM)
 
+ ```bgt REG, REG/IMM, *IMM``` (branch to *IMM if REG is GREATER than REG/IMM)
+
+ ```mul REG, *REG, #REG``` (multiply *REG with #REG and store result in REG)
+
+ Instructions not listed are **VERY** similar to the ones listed above.
 ### SPIM syscall table
 [here](http://students.cs.tamu.edu/tanzir/csce350/reference/syscalls.html)
