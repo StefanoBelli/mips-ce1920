@@ -89,6 +89,18 @@ e.g., ex(it), re(ad), l(oad), ru(n), s(tep), p(rint)
 
  ```mul REG, *REG, #REG``` (multiply *REG with #REG and store result in REG)
 
+ ```mult REG, $REG``` (multiply REG with $REG and store least-upper 32 bit in lo-hi registers)
+
+ ```div REG, $REG``` (divide REG by $REG and store result in lo 32 bit reg, hi )
+
+ ```lui REG, IMM``` (load upper 16 bit IMM to REG, zero the least 16's)
+
+ ```ori REG, IMM``` (load least 16 bit IMM to REG)
+
+ ```mflo REG``` (load content of LO register to REG)
+
+ ```mfhi REG``` (load content of HI register to REG)
+
  Instructions not listed are **VERY** similar to the ones listed above.
 ### SPIM syscall table
 [here](http://students.cs.tamu.edu/tanzir/csce350/reference/syscalls.html)
