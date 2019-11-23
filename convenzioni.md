@@ -14,7 +14,10 @@
   * preserva i seguenti registri (se necessario):
       - `$ra`
       - `$fp`
-      - `$s0` - `$s7`
+      - `$s0` - `$s7`   
+  * il valore di ritorno in:
+      - `$v0`
+      - `$v1`
 
 # Uso dello stack
 Quando un registro viene preservato e/o si vuole pushare un valore sullo stack, è necessario riservare spazio,
