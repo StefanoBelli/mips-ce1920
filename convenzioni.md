@@ -23,7 +23,7 @@
 Quando un registro viene preservato e/o si vuole pushare un valore sullo stack, è necessario riservare spazio,
 sottraendo dallo stack pointer il numero di byte desiderato, e poi usare store word
 
-Alla fine di ogni procedura lo stack pointer deve essere ripristinato a come era esattamente dopo la jump and link
+Alla fine di ogni procedura lo stack pointer deve essere ripristinato a come era esattamente dopo la jump and link (dal chiamante)
 
 ```asm
 addi $sp, $sp, -4   
