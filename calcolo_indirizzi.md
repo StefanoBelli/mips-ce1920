@@ -53,11 +53,11 @@ Se si vuole effettuare un salto a 32 bit si deve usare `jr` (formato istruzione 
 
 Se il problema viene posto dopo la fase di linking (collegamento):
 
-	* Nel caso di una branch, bisogna contare la destinazione 
+* Nel caso di una branch, bisogna contare la destinazione 
 		a partire dall'istruzione successiva a essa
 		e dire quindi quale valore andrà a finire nel campo immediate.
 
-	Esempio:
+Esempio:
 
 	```asm
 	A: istr
@@ -72,13 +72,13 @@ Se il problema viene posto dopo la fase di linking (collegamento):
 	Risposta: 2
 	```
 
-	In questo caso le istruzioni di branching sono indipendenti dalla posizione del programma in memoria.
+In questo caso le istruzioni di branching sono indipendenti dalla posizione del programma in memoria.
 
-	Dipendono dalla distanza dell'istruzione alla destinazione del salto.
+Dipendono dalla distanza dell'istruzione alla destinazione del salto.
 
-	*NON VENGONO MAI RILOCATE*
+*NON VENGONO MAI RILOCATE*
 
-	* Nel caso di una jump, bisogna assumere che il programma venga caricato a partire da 0:
+* Nel caso di una jump, bisogna assumere che il programma venga caricato a partire da 0:
 
 	```asm
 	istr 		# 0x0
@@ -89,10 +89,10 @@ Se il problema viene posto dopo la fase di linking (collegamento):
 	determinare il campo imm di jal main dopo il linking
 	```
 
-	quindi contare di 4 l'avanzare delle istruzioni.
+quindi contare di 4 l'avanzare delle istruzioni.
 
-	Il testo poi specifica che il modulo viene posizionato in memoria a partire da 0x00400D00, è quindi 
-	sufficiente sommare la posizione delle istruzioni contate da 0 a 0x00400D00
+Il testo poi specifica che il modulo viene posizionato in memoria a partire da 0x00400D00, è quindi 
+sufficiente sommare la posizione delle istruzioni contate da 0 a 0x00400D00
 
 	```asm
 	istr 		# 0x00400D00 (inizio)
@@ -108,29 +108,29 @@ Se il problema viene posto dopo la fase di linking (collegamento):
 
 # In esecuzione
 
-	* Branch
-	per il calcolo dell'indirizzo assoluto:
+* Branch
+per il calcolo dell'indirizzo assoluto:
 	
 	```
 	b(pc, imm) = (pc + 4) + sign_extend(imm << 2)
 	```
 
-		* Nel testo viene data come minimo la posizione in memoria del programma, è sufficiente calcolarsi il 		valore di pc all'istruzione di branch e applicare quella formula.
+* Nel testo viene data come minimo la posizione in memoria del programma, è sufficiente calcolarsi il 		valore di pc all'istruzione di branch e applicare quella formula.
 
-		* `sign_extend` serve a estendere `imm << 2` a 32 bit. Se il numero è positivo si riempono i rimanenti 		14 bit di 0, altrimenti di 1.
+* `sign_extend` serve a estendere `imm << 2` a 32 bit. Se il numero è positivo si riempono i rimanenti 		14 bit di 0, altrimenti di 1.
 
-	* Jumps
-	per il calcolo dell'indirizzo assoluto:
+* Jumps
+per il calcolo dell'indirizzo assoluto:
 
-		* bisogna calcolare `pc + 4` (sempre per la posizione dell'istruzione di jump)
+	* bisogna calcolare `pc + 4` (sempre per la posizione dell'istruzione di jump)
 
-		* estrarre i primi 4 bit di `pc + 4` (dalla *MSB*)
+	* estrarre i primi 4 bit di `pc + 4` (dalla *MSB*)
 
-		* prendere l'immediato a 26 bit dell'istruzione e shiftarlo a sinistra di 2 bit (equivalente a molt. per 4)
+	* prendere l'immediato a 26 bit dell'istruzione e shiftarlo a sinistra di 2 bit (equivalente a molt. per 4)
 
-		* da 26 bit abbiamo ottenuto un indirizzo a 28 bit, quindi:
+	* da 26 bit abbiamo ottenuto un indirizzo a 28 bit, quindi:
 
-		* aggiungere i 4 bit di `pc + 4` ai 28 bit, per formarne 32.
+	* aggiungere i 4 bit di `pc + 4` ai 28 bit, per formarne 32.
 
 		```
 		pc + 4 = 1100 0011 0011 0000 0000 1100 0001 1000
