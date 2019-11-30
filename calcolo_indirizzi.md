@@ -4,8 +4,8 @@ Prima cosa da considerare: dipende da come viene posto il problema.
 
 Si richiede infatti il calcolo:
 
-	* Dopo la fase di linking
-	* In fase d'esecuzione
+* Dopo la fase di linking
+* In fase d'esecuzione
 
 ## Branching
 
@@ -59,7 +59,7 @@ Se il problema viene posto dopo la fase di linking (collegamento):
 
 Esempio:
 
-	```asm
+```asm
 	A: istr
 	B: istr
 	C: beq $t0, $0, F
@@ -70,7 +70,7 @@ Esempio:
 
 	Se voglio saltare all'istruzione F, quale sarà il campo immediate di BEQ?
 	Risposta: 2
-	```
+```
 
 In questo caso le istruzioni di branching sono indipendenti dalla posizione del programma in memoria.
 
@@ -80,21 +80,21 @@ Dipendono dalla distanza dell'istruzione alla destinazione del salto.
 
 * Nel caso di una jump, bisogna assumere che il programma venga caricato a partire da 0:
 
-	```asm
+```asm
 	istr 		# 0x0
 	jal main 	# 0x4
 	istr 		# 0x8
 	main: istr 	# 0xC
 
 	determinare il campo imm di jal main dopo il linking
-	```
+```
 
 quindi contare di 4 l'avanzare delle istruzioni.
 
 Il testo poi specifica che il modulo viene posizionato in memoria a partire da 0x00400D00, è quindi 
 sufficiente sommare la posizione delle istruzioni contate da 0 a 0x00400D00
 
-	```asm
+```asm
 	istr 		# 0x00400D00 (inizio)
 	jal main	# 0x00400D04 ----
 	istr 		# 0x00400D08    |
@@ -103,7 +103,7 @@ sufficiente sommare la posizione delle istruzioni contate da 0 a 0x00400D00
 	main = 0x00400D0C
 
 	RISPOSTA: jal 0x00400D0C, dopo la fase di collegamento nel campo immediate di jal c'è il valore 0x00400D0C
-	```
+```
 
 
 # In esecuzione
@@ -111,9 +111,9 @@ sufficiente sommare la posizione delle istruzioni contate da 0 a 0x00400D00
 * Branch
 per il calcolo dell'indirizzo assoluto:
 	
-	```
+```
 	b(pc, imm) = (pc + 4) + sign_extend(imm << 2)
-	```
+```
 
 * Nel testo viene data come minimo la posizione in memoria del programma, è sufficiente calcolarsi il 		valore di pc all'istruzione di branch e applicare quella formula.
 
@@ -122,17 +122,17 @@ per il calcolo dell'indirizzo assoluto:
 * Jumps
 per il calcolo dell'indirizzo assoluto:
 
-	* bisogna calcolare `pc + 4` (sempre per la posizione dell'istruzione di jump)
+* bisogna calcolare `pc + 4` (sempre per la posizione dell'istruzione di jump)
 
-	* estrarre i primi 4 bit di `pc + 4` (dalla *MSB*)
+* estrarre i primi 4 bit di `pc + 4` (dalla *MSB*)
 
-	* prendere l'immediato a 26 bit dell'istruzione e shiftarlo a sinistra di 2 bit (equivalente a molt. per 4)
+* prendere l'immediato a 26 bit dell'istruzione e shiftarlo a sinistra di 2 bit (equivalente a molt. per 4)
 
-	* da 26 bit abbiamo ottenuto un indirizzo a 28 bit, quindi:
+* da 26 bit abbiamo ottenuto un indirizzo a 28 bit, quindi:
 
-	* aggiungere i 4 bit di `pc + 4` ai 28 bit, per formarne 32.
+* aggiungere i 4 bit di `pc + 4` ai 28 bit, per formarne 32.
 
-		```
+```
 		pc + 4 = 1100 0011 0011 0000 0000 1100 0001 1000
 		addr = 0000 1111 1010 0101 0000 0101 1111
 
@@ -143,8 +143,9 @@ per il calcolo dell'indirizzo assoluto:
 		 * aggiungili all'inizio (sinistra) di addr << 2: 1100 0011 1110 1001 0100 0001 0111 1100
 
 		 l'indirizzo ottenuto è di 32 bit
-		 ```
+```
 
+Implementazione:
 		```
 		j(pc, imm) = (pc + 4) & 0xF0000000 | (imm << 2)
 		```
