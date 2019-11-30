@@ -1,5 +1,29 @@
 #include <stdlib.h>
 
+//ritorna il numero di cifre presenti
+int dgt(int j) {
+	int i = 0;
+
+	while (j) {
+		j /= 10;
+		i++;
+	}
+
+	return i;
+}
+
+//converti il numero in caratteri ascii
+//ritorna il numero di caratteri effettivi
+int itos(int n, char* out) {
+	int slen = dgt(n);
+	for (int i = slen - 1; n; --i) {
+		out[i] = (n % 10) + 48;
+		n /= 10;
+	}
+
+	return slen;
+}
+
 // s: stringa da comprimere
 // ritorna: NULL se len(s) == 0 o malloc fallisce, la stringa compressa altrimenti.
 char* comprimi(char* s) {
@@ -31,9 +55,10 @@ char* comprimi(char* s) {
 				}
 
 			} else { //il numero di caratteri letti è K >= 3, scrivi Kc
-				ns[ns_i] = cnt + 48; // codifica ascii per il numero 'K'
-				ns[ns_i + 1] = chr;  // scrivi in posizione successiva il carattere 'c'
-				ns_i += 2;
+				//ns[ns_i] = cnt + 48; // codifica ascii per il numero 'K'
+				int pos = itos(cnt, ns + ns_i);
+				ns[ns_i + pos] = chr;  // scrivi in posizione successiva il carattere 'c'
+				ns_i += pos + 1;
 			}
 
 			chr = s[i]; //nuovo carattere
@@ -59,6 +84,7 @@ int main() {
 		printf("%s\n", rle);
 
 	free(rle);
+
 	return 0;
 }
 
