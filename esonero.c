@@ -12,12 +12,8 @@ int diag_swap(int m, int n, int mat[m][n]) {
 		return 1;
 
 
-	for(int i = 0; i < m; ++i) {
-		for (int j = 0; j < n; ++j) {
-			if(i == j)
-				swap(mat[i][j], mat[i][n - j - 1]);
-		}
-	}
+	for(int i = 0; i < m; ++i)
+		swap(mat[i][m - i - 1], mat[i][i]);
 
 	return 0;
 }
