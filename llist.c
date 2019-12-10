@@ -67,20 +67,21 @@ void delete_node_list(node_t** l, int idx) {
 	}
 }
 
+void delete_list(node_t** list) {
+	for(;*list;)
+		delete_node_list(list, 0);
+}
+
 int main() {
-	node_t* head = NULL;
+	node_t* head;
 	insert_list(&head, 0, 1);
 	insert_list(&head, 1, 2);
 	insert_list(&head, 2, 3);
 	insert_list(&head, 3, 4);
 
-	print_list(head);
 	printf("%d\n", len_list(head));
-
-	for(int i = 0; i < len_list(head); ++i)
-		delete_node_list(&head, i);
-
-	return 0;
+	delete_list(&head);
+	printf("%d\n", len_list(head));
 }
 
 
