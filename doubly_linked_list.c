@@ -95,9 +95,15 @@ void print_reversed_list(node_t *head) {
 int main() {
 	node_t *head = NULL;
 
-	for(int i = 0; i < 1000; ++i)
-		insert_list(&head, i, i+1);
+	insert_list(&head, 0, 10);
+	insert_list(&head, 0, 11);
+	insert_list(&head, 0, 12);
+	insert_list(&head, 0, 13);
+
 	delete_list(&head);
+	if(head == NULL)
+		puts("nullhead");
+
 	return 0;
 }
 
